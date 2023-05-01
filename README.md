@@ -27,7 +27,7 @@ Content-length: 181
 
 The XML-RPC website has complete details, but in essence, all of the information about a remote call (or reponse) comes in the XML payload--it does not care about most of the rest of the HTTP layer.
 
-## Server rubric (10 pts)
+## Server rubric (5 pts)
 
 A basic scaffolded HTTP server (using the SparkJava project) is provided for you in the JavaServer directory. You are free to use this, or you can use a different project if you choose. Whatever you use, your HTTP endpoint must:
 
@@ -64,7 +64,7 @@ In addition, `add` and `multiply` should also each accept an array of `i4` value
     * wrong kinds of parameters (no booleans allowed) (1 pt)
     * divide-by-zero (1 pt)
 
-## Client rubric (5 pts)
+## Client rubric (3 pts)
 
 Your client must be a console application that takes command-line parameters like so:
 
@@ -87,9 +87,7 @@ In addition, the client should make sure the server responds with errors appropr
 * subtract taking two string parameters should trigger illegal argument faults
 * divide any number by 0 and trigger a divide-by-zero fault
 
-*Each of these bullet items is worth 1/2 pt.*
-
-## Interoperability rubric (5 pts)
+## Interoperability rubric (2 pts)
 
 In order to ensure that your use of XML-RPC is correct, you must demonstrate that your XML-RPC client can work against another person's XML-RPC server, and similarly that another (different) person's client can work against your server. In your project's README, document which person's server you interop'ed against, and which person's client.
 
