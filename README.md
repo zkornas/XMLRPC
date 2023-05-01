@@ -38,31 +38,15 @@ A basic scaffolded HTTP server (using the SparkJava project) is provided for you
 
 Your XML-RPC endpoint must support five method names:
 
-* `add`: it should take two `i4` parameters, returning one `i4` result, adding two values together. 
-* `subtract`: it should take two `i4` parameters, returning one `i4` result, subtracting the second from the first. Any integer value (negative or positive) are acceptable, and if the result would be larger than a four-byte integer can hold, it should overflow.
-* `multiply`: (taking two `i4` parameters, returning one `i4` result) multiplying the two values together
-* `divide`: (taking two `i4` parameters, returning one `i4` result) dividing the first by the second
-* `modulo`: (taking two `i4` parameters, returning one `i4` result) doing the modulo operation.
+* `add`: it should take zero to any number of `i4` parameters, returning one `i4` result, adding the values together. `add` with 0 parameters should return 0; `add` with 1 parameter should return that original value. Otherwise, sum all the parameters.
+* `subtract`: it should take two `i4` parameters, returning one `i4` result, subtracting the second from the first.
+* `multiply`: it should take zero to any number of `i4` parameters, returning one `i4` result, multiplying the values together. `multiply` with 0 parameters should return 1; `multiply` with 1 parameter should return that original value. Otherwise, multiply all the parameters.
+* `divide`: it should take two `i4` parameters, returning one `i4` result, dividing the first by the second. If the second parameter is a `0`, return a `faultCode` of `1` and a `faultString` of "divide by zero".
+* `modulo`: it should take two `i4` parameters, returning one `i4` result, doing the modulo (remainder) operation. If the second parameter is a `0`, return a `faultCode` of `1` and a `faultString` of "divide by zero".
 
-Any integer values (negative or positive) are acceptable, and if the result would be larger than a four-byte integer can hold, it should return a fault with a `faultCode` of `1` and a `faultString` of "integer overflow". Both `divide` and `modulo` should return a `faultCode` of `2` and a `faultString` of "divide by zero" if the second parameter is a `0`.
+To be more clear about `add` and `multiply`, an `add` of `1, 2, 3, 4` should be 1 + 2 + 3 + 4, or 10, and a `multiply` of 1, 2, 3, 4 would be 1 * 2 * 3 * 4, or 24. 
 
-In addition, `add` and `multiply` should also each accept an array of `i4` values (no other data type), adding or multiplying all the values together; so an `add` of `1, 2, 3, 4` should be 1 + 2 + 3 + 4, or 10. Similarly, a `multiply` of 1, 2, 3, 4 would be 1 * 2 * 3 * 4, or 24. If the array has zero elements in it, return `0`. If anything than an `i4` is passed to any of these endpoints, return a `faultCode` of `3` and a `faultString` of "illegal argument type". If `subtract`, `divide`, or `modulo` are given any number of parameters other than 2, return a `faultCode` of `4` and `faultString` of "illegal number of arguments".
-
-*The point breakdown for these is as follows:*
-
-* five calculator operations
-    * add (1 pt)
-    * subtract (1 pt)
-    * multiply (1 pt)
-    * divide (1 pt)
-    * modulo (1 pt)
-* handle all errors gracefully
-    * parameters (3 pts)
-        * subtract and divide must have two
-        * add: zero params = 0, one param = param, two+, added up
-        * multiply: zero params = 0, one param = 0, two+ multiplied up
-    * wrong kinds of parameters (no booleans allowed) (1 pt)
-    * divide-by-zero (1 pt)
+If anything than an `i4` is passed to any of these endpoints, return a `faultCode` of `3` and a `faultString` of "illegal argument type".
 
 ## Client rubric (3 pts)
 
@@ -89,10 +73,13 @@ In addition, the client should make sure the server responds with errors appropr
 
 ## Interoperability rubric (2 pts)
 
-In order to ensure that your use of XML-RPC is correct, you must demonstrate that your XML-RPC client can work against another person's XML-RPC server, and similarly that another (different) person's client can work against your server. In your project's README, document which person's server you interop'ed against, and which person's client.
+In order to ensure that your use of XML-RPC is correct, you must demonstrate that your XML-RPC client can work against another person's XML-RPC server, and similarly that another (different) person's client can work against your server. In your project's README, document which other server you interop'ed against, and which client.
 
-*Client calling another server, 1 pt. Server called by another client, 1 pt. Everything works as expected, 3 pts.*
+*Client calling another server, 1 pt. Server called by another client, 1 pt.*
 
 ## Extra credit: REST (5 pts)
 
-Write a REST calculator server endpoint. Make sure that your REST endpoint is different from your XML-RPC endpoint. (Ideally we should be able to run both at the same time.) It must support the same five calculator operations as the XML-RPC one, with similar (preferably identical!) error handling.
+* Write a REST calculator server
+* Create an entirely separate HTTP endpoint
+* Same five calculator operations
+* Same sort of error handling
