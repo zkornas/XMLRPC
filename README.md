@@ -95,6 +95,10 @@ In order to ensure that your use of XML-RPC is correct, you must demonstrate tha
 
 *Client calling another server, 1 pt. Server called by another client, 1 pt. Everything works as expected, 3 pts.*
 
+## A note about Gradle
+
+
+
 ## Extra credit: REST (5 pts)
 
 Write a REST calculator server endpoint. Make sure that your REST endpoint is different from your XML-RPC endpoint. (Ideally we should be able to run both at the same time.) It must support the same five calculator operations as the XML-RPC one, with similar (preferably identical!) error handling.
