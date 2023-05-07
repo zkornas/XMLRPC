@@ -17,8 +17,8 @@ def add(*args):
         </params>
     </methodCall>
     '''
-    return(xml_data)
-    #response = requests.post(url, headers=headers, data=xml_data)
-    #return response.content.decode('utf-8')
+    response = requests.post(url, headers=headers, data=xml_data)
+    return response.content.decode('utf-8')
+    #print(xml_data)
 
-print(add(2, 4))
+print(add(2, 4) == '6')
