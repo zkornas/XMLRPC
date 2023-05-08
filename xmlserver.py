@@ -81,6 +81,7 @@ class XMLServer(BaseHTTPRequestHandler):
             </methodResponse>
         """.format(result)
 
+        print(response_str)
         self.send_response(200)
         self.send_header("Content-type", "application/xml")
         self.end_headers()
