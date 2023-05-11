@@ -70,24 +70,3 @@ In addition, the client should make sure the server responds with errors appropr
 * multiply two very large numbers and trigger an overflow
 * subtract taking two string parameters should trigger illegal argument faults
 * divide any number by 0 and trigger a divide-by-zero fault
-
-## Interoperability rubric (2 pts)
-
-In order to ensure that your use of XML-RPC is correct, you must demonstrate that your XML-RPC client can work against another person's XML-RPC server, and similarly that another (different) person's client can work against your server. In your project's README, document which other server you interop'ed against, and which client.
-
-*Client calling another server, 1 pt. Server called by another client, 1 pt.*
-
-## A note about Gradle
-
-In the JavaServer directory, you will find a [Gradle](https://gradle.org/) project: specifically, there is a pair of files, `gradlew` and `gradlew.bat` which are shell scripts for *nix-like shells (macOS and Linux, primarily) and Windows, respectively, and use the binaries and configuration stored in the `gradle` directory to boostrap the necessary components on your machine to do a build.
-
-Breaking all of that down, what it means is that **so long as you have a recent Java SDK installed on your machine, you can just type "gradlew run" and Gradle will build and run the code**. The source is located in JavaServer/app/src/main/java/edu/uw/info314/xmlrpc/server, and most tools (like VSCode) will recognize the directory structure and treat it as a Gradle project.
-
-If this is your first experience with a Gradle project, don't stress. Just have a Terminal window open, and from the JavaServer directory, type `gradlew run` to compile-and-run the Java server code. If it fails to build, it will give you the compile errors, otherwise it will show you the running output.
-
-## Extra credit: REST (5 pts)
-
-* Write a REST calculator server
-* Create an entirely separate HTTP endpoint
-* Same five calculator operations
-* Same sort of error handling
